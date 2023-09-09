@@ -1,6 +1,5 @@
 package DatabaseManager;
 
-import static android.content.Context.MODE_PRIVATE;
 import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 import android.content.Context;
@@ -9,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseDataHandler extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME;
     private static String TABLE_ITEM = "table_item";
@@ -19,8 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static String TABLE_COLORANDSIZE_ID = "id";
     private static String TABLE_COLORANDSIZE_NAME = "name";
 
-    public DatabaseHelper(@Nullable Context context, @Nullable String name, int version) {
-        super(context, name + ".db", null, version);
+    public DatabaseDataHandler(@Nullable Context context, @Nullable String name) {
+        super(context, name + ".db", null, 1);
         DATABASE_NAME = name + ".db";
     }
 

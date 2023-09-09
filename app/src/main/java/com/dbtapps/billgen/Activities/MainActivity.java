@@ -7,16 +7,15 @@ GO TO COMMAND LINE AND TYPE
 emulator -avd <name of the emulator> -feature -Vulkan
 */
 
-
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import com.dbtapps.billgen.databinding.ActivityMainBinding;
+
+import DatabaseManager.DatabaseManager;
+import DatabaseManager.SqliteDatabaseConnections;
+import Utilities.PermissionManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,14 +27,17 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        dbnamesInit();
         permissionManager();
         btnListeners();
     }
 
-    private void permissionManager() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+    private void dbnamesInit() {
+        SqliteDatabaseConnections.DBNAMES = new DatabaseManager(this).getWritableDatabase();
+    }
 
-        }
+    private void permissionManager() {
+        PermissionManager.permissionManager(this);
     }
 
     private void btnListeners(){

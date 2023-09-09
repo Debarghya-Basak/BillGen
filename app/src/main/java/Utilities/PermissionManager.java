@@ -23,8 +23,8 @@ public class PermissionManager extends AppCompatActivity {
     public static void permissionMaker(){
         permissionModelList = new ArrayList<>();
 
-        permissionModelList.add(new PermissionModel("READ EXTERNAL STORAGE", Manifest.permission.READ_EXTERNAL_STORAGE, Build.VERSION_CODES.N, Build.VERSION_CODES.S_V2));
-        permissionModelList.add(new PermissionModel("WRITE EXTERNAL STORAGE", Manifest.permission.WRITE_EXTERNAL_STORAGE, Build.VERSION_CODES.TIRAMISU));
+        permissionModelList.add(new PermissionModel("READ EXTERNAL STORAGE", Manifest.permission.READ_EXTERNAL_STORAGE, Build.VERSION_CODES.N, Build.VERSION_CODES.TIRAMISU));
+        permissionModelList.add(new PermissionModel("WRITE EXTERNAL STORAGE", Manifest.permission.WRITE_EXTERNAL_STORAGE, Build.VERSION_CODES.N, Build.VERSION_CODES.TIRAMISU));
     }
 
     public static void permissionManager(Activity activity){

@@ -1,16 +1,16 @@
 package com.dbtapps.billgen.Activities;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.Toast;
 
-import com.dbtapps.billgen.R;
 import com.dbtapps.billgen.databinding.ActivityCreateCompanyBinding;
 
-import DatabaseManager.DatabaseHelper;
+import DatabaseManager.DatabaseDataHandler;
+import DatabaseManager.DatabaseManager;
+import DatabaseManager.SqliteDatabaseConnections;
 
 public class CreateCompanyActivity extends AppCompatActivity {
 
@@ -23,7 +23,6 @@ public class CreateCompanyActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         //setSupportActionBar(binding.topAppBarTab);
-
         btnListeners();
     }
 
@@ -31,7 +30,8 @@ public class CreateCompanyActivity extends AppCompatActivity {
         binding.submitBtn.setOnClickListener(v -> {
             binding.companyNameTil.clearFocus();
 
-            DatabaseHelper db = new DatabaseHelper(this, binding.companyNameTiet.getText().toString(), 1);
+            SqliteDatabaseConnections.DBDATA =  new DatabaseDataHandler(this, binding.companyNameTiet.getText().toString()).getWritableDatabase();
+            new DatabaseManager(this).addDatabaseName(binding.companyNameTiet.getText().toString());
 
             Toast.makeText(this, "Company created", Toast.LENGTH_SHORT).show();
         });
