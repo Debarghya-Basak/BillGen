@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.dbtapps.billgen.R;
 import com.dbtapps.billgen.databinding.ActivityCreateCompanyBinding;
 
+import DatabaseManager.DatabaseHelper;
+
 public class CreateCompanyActivity extends AppCompatActivity {
 
     private ActivityCreateCompanyBinding binding;
@@ -28,6 +30,8 @@ public class CreateCompanyActivity extends AppCompatActivity {
     private void btnListeners() {
         binding.submitBtn.setOnClickListener(v -> {
             binding.companyNameTil.clearFocus();
+
+            DatabaseHelper db = new DatabaseHelper(this, binding.companyNameTiet.getText().toString(), 1);
 
             Toast.makeText(this, "Company created", Toast.LENGTH_SHORT).show();
         });
