@@ -44,33 +44,31 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/createCompanyBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250sp"
+            android:layout_height="80sp"
             android:layout_margin="20sp"
 
             android:text="Create Company"
-            android:textStyle="normal"
-            android:textSize="20sp"
-            android:textAppearance="@font/open_sans"
 
             app:icon="@drawable/create_company_icon"
+            app:iconSize="30sp"
 
-            android:theme="@style/ThemeOverlay.Material3.Button"/>
+            android:theme="@style/OutlinedIconTextButton"/>
+
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/loadCompanyBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250sp"
+            android:layout_height="80sp"
             android:layout_margin="20sp"
 
             android:text="Load Company"
-            android:textStyle="normal"
-            android:textSize="20sp"
-            android:textAppearance="@font/open_sans"
 
             app:icon="@drawable/load_company_icon"
+            app:iconSize="30sp"
 
-            android:theme="@style/ThemeOverlay.Material3.Button.TonalButton"/>
+            android:theme="@style/FilledIconTextButton"/>
 
 
     </LinearLayout>
