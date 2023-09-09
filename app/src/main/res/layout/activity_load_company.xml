@@ -6,4 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".Activities.LoadCompanyActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBarTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+
+            app:icon="@drawable/back_btn_icon"
+            app:iconSize="30sp"
+            app:iconGravity="textStart"
+
+            android:theme="@style/ThemeOverlay.Material3.Button.ElevatedButton"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Load Your Company"
+
+            android:theme="@style/textView20"
+            />
+
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/displayIconIv"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+
+        app:layout_constraintTop_toBottomOf="@id/topAppBarTab"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:src="@drawable/load_company_icon"
+        android:tint="?attr/imageViewTint"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10sp"
+        app:layout_constraintTop_toBottomOf="@id/displayIconIv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:background="@drawable/container_card"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,6 +41,7 @@
         <item name="android:windowSoftInputMode">adjustResize|adjustPan</item>
 
         <item name="imageViewTint">@color/md_theme_dark_secondary</item>
+        <item name="containerCardColor">@color/md_theme_light_background_white</item>
     </style>
 
     <style name="Theme.BillGen" parent="Base.Theme.BillGen" />

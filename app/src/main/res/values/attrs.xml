@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="customAttrs">
         <attr name="imageViewTint" format="reference" />
+        <attr name="containerCardColor" format="reference" />
     </declare-styleable>
 </resources>
