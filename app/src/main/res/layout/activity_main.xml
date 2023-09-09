@@ -6,8 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+<!--    <com.google.android.material.appbar.MaterialToolbar-->
+<!--        android:id="@+id/appBarAb"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:gravity="center"
+
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30sp"
+
+            android:text="@string/app_name"
+            android:textSize="40sp"
+            android:textStyle="italic|bold"
+
+            android:theme="@style/Widget.Material3.CheckedTextView"/>
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createCompanyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+
+            android:text="Create Company"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textAppearance="@font/open_sans"
+
+            app:icon="@drawable/create_company_icon"
+
+            android:theme="@style/ThemeOverlay.Material3.Button"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loadCompanyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+
+            android:text="Load Company"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textAppearance="@font/open_sans"
+
+            app:icon="@drawable/load_company_icon"
+
+            android:theme="@style/ThemeOverlay.Material3.Button.TonalButton"/>
+
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
