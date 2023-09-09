@@ -12,16 +12,30 @@ import androidx.annotation.Nullable;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME;
-    private static String GROUP_TABLE;
-    //private static String
+    private static String TABLE_ITEM = "table_item";
+    private static String TABLE_ITEM_ID = "id";
+    private static String TABLE_ITEM_NAME = "name";
+    private static String TABLE_COLORANDSIZE = "table_colorandsize";
+    private static String TABLE_COLORANDSIZE_ID = "id";
+    private static String TABLE_COLORANDSIZE_NAME = "name";
 
     public DatabaseHelper(@Nullable Context context, @Nullable String name, int version) {
-        super(context, name, null, version);
-        DATABASE_NAME = name;
+        super(context, name + ".db", null, version);
+        DATABASE_NAME = name + ".db";
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        String query = "CREATE TABLE " + TABLE_ITEM +
+                " (" + TABLE_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TABLE_ITEM_NAME + " TEXT);";
+        db.execSQL(query);
+
+        query = "CREATE TABLE " + TABLE_COLORANDSIZE +
+                " (" + TABLE_COLORANDSIZE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TABLE_COLORANDSIZE_NAME + " TEXT);";
+        db.execSQL(query);
 
     }
 
