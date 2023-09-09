@@ -51,6 +51,7 @@
         android:tint="?attr/imageViewTint"/>
 
     <ImageView
+        android:id="@+id/containerCardIv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10sp"
@@ -61,5 +62,17 @@
 
         android:background="@drawable/container_card"
         />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/databaseNamesRv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20sp"
+        app:layout_constraintTop_toTopOf="@id/containerCardIv"
+        app:layout_constraintBottom_toBottomOf="@id/containerCardIv"
+        app:layout_constraintStart_toStartOf="@id/containerCardIv"
+        app:layout_constraintEnd_toEndOf="@id/containerCardIv"
+
+        android:requiresFadingEdge="vertical"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
