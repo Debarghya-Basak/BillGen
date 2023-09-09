@@ -61,4 +61,24 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
+
+    <style name="OutlinedIconTextButton" parent="Widget.Material3.Button.OutlinedButton.Icon">
+        <item name="strokeWidth">2sp</item>
+        <item name="rippleColor">@color/md_theme_light_primary</item>
+        <item name="colorContainer">@android:color/transparent</item>
+
+        <item name="colorOnContainer">@color/md_theme_dark_onSecondaryContainer</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAppearance">@font/open_sans</item>
+
+    </style>
+
+
+    <style name="FilledIconTextButton" parent="ThemeOverlay.Material3.Button.TonalButton">
+        <item name="strokeWidth">2sp</item>
+        <item name="strokeColor">@color/md_theme_light_secondary</item>
+
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAppearance">@font/open_sans</item>
+    </style>
 </resources>
