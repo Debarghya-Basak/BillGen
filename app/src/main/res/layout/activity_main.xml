@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
 <!--    <com.google.android.material.appbar.MaterialToolbar-->
 <!--        android:id="@+id/appBarAb"-->
@@ -39,9 +39,6 @@
 
             android:theme="@style/ThemeOverlay.Material3.AutoCompleteTextView"/>
 
-
-
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/createCompanyBtn"
             android:layout_width="250sp"
@@ -54,8 +51,6 @@
             app:iconSize="30sp"
 
             android:theme="@style/OutlinedIconTextButton"/>
-
-
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/loadCompanyBtn"
