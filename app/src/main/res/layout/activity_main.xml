@@ -34,10 +34,8 @@
             android:layout_margin="30sp"
 
             android:text="@string/app_name"
-            android:textSize="40sp"
-            android:textStyle="italic|bold"
 
-            android:theme="@style/ThemeOverlay.Material3.AutoCompleteTextView"/>
+            android:theme="@style/textView40Italic"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/createCompanyBtn"
