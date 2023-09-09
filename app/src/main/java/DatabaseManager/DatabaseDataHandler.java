@@ -12,10 +12,8 @@ public class DatabaseDataHandler extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME;
     private static String TABLE_ITEM = "table_item";
-    private static String TABLE_ITEM_ID = "id";
     private static String TABLE_ITEM_NAME = "name";
     private static String TABLE_COLORANDSIZE = "table_colorandsize";
-    private static String TABLE_COLORANDSIZE_ID = "id";
     private static String TABLE_COLORANDSIZE_NAME = "name";
 
     public DatabaseDataHandler(@Nullable Context context, @Nullable String name) {
@@ -27,13 +25,11 @@ public class DatabaseDataHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String query = "CREATE TABLE " + TABLE_ITEM +
-                " (" + TABLE_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                TABLE_ITEM_NAME + " TEXT);";
+                " (" + TABLE_ITEM_NAME + " TEXT PRIMARY KEY);";
         db.execSQL(query);
 
         query = "CREATE TABLE " + TABLE_COLORANDSIZE +
-                " (" + TABLE_COLORANDSIZE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                TABLE_COLORANDSIZE_NAME + " TEXT);";
+                " (" + TABLE_COLORANDSIZE_NAME + " TEXT PRIMARY KEY);";
         db.execSQL(query);
 
     }

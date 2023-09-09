@@ -30,10 +30,14 @@ public class CreateCompanyActivity extends AppCompatActivity {
         binding.submitBtn.setOnClickListener(v -> {
             binding.companyNameTil.clearFocus();
 
-            SqliteDatabaseConnections.DBDATA =  new DatabaseDataHandler(this, binding.companyNameTiet.getText().toString()).getWritableDatabase();
-            new DatabaseManager(this).addDatabaseName(binding.companyNameTiet.getText().toString());
+            if(new DatabaseManager(this).contains(binding.companyNameTiet.getText().toString())){
+                Toast.makeText(this, "Company already present", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                SqliteDatabaseConnections.DBDATA = new DatabaseDataHandler(this, binding.companyNameTiet.getText().toString()).getWritableDatabase();
+                new DatabaseManager(this).addDatabaseName(binding.companyNameTiet.getText().toString());
+            }
 
-            Toast.makeText(this, "Company created", Toast.LENGTH_SHORT).show();
         });
     }
 

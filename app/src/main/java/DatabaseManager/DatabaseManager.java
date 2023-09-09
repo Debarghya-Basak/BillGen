@@ -2,6 +2,7 @@ package DatabaseManager;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -12,7 +13,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "DBNAMES.db";
     private static final String TABLE_NAME = "databasenames";
-    private static final String ID = "id";
     private static final String NAME = "name";
     private static Context context;
 
@@ -24,8 +24,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
-                " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                NAME + " TEXT);";
+                " (" + NAME + " TEXT PRIMARY KEY);";
         db.execSQL(query);
     }
 
@@ -43,9 +42,39 @@ public class DatabaseManager extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, cv);
 
         if(result == -1)
-            Toast.makeText(context, "Failed to create database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Failed to create Company", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(context, "Database created successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Company created successfully", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public boolean contains(String name) {
+
+        Cursor cursor = returnDatabaseNames();
+
+        if(cursor != null) {
+            if (cursor.getCount() != 0) {
+                while (cursor.moveToNext()) {
+                    if (name.equals(cursor.getString(0)))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+
+    }
+
+    public Cursor returnDatabaseNames(){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME;
+
+        Cursor cursor = null;
+        if(db != null)
+            cursor = db.rawQuery(query, null);
+
+        return cursor;
 
     }
 }
