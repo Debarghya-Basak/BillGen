@@ -43,6 +43,7 @@
         <item name="imageViewTint">@color/md_theme_dark_secondary</item>
         <item name="cardColor">@color/md_theme_light_tertiaryContainer</item>
         <item name="containerBackgroundColor">@color/md_theme_light_background_white</item>
+        <item name="bottomDialogBackgroundColor">@color/md_theme_light_background</item>
     </style>
 
     <style name="Theme.BillGen" parent="Base.Theme.BillGen" />

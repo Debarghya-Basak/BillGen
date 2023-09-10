@@ -4,5 +4,6 @@
         <attr name="imageViewTint" format="reference" />
         <attr name="cardColor" format="reference" />
         <attr name="containerBackgroundColor" format="reference" />
+        <attr name="bottomDialogBackgroundColor" format="reference" />
     </declare-styleable>
 </resources>

@@ -52,6 +52,7 @@
                             android:theme="@style/textView20"/>
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/loadCompanyBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
