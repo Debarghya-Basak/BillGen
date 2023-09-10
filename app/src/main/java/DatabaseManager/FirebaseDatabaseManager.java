@@ -4,19 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import Adapters.LoadDatabaseNamesRVAdapter;
 
 public class FirebaseDatabaseManager {
@@ -61,6 +56,7 @@ public class FirebaseDatabaseManager {
 
     public static void addDatabaseNameToFirebase(Activity activity, String name){
 
+        //Fetch company names from firebase firestore and store it in arraylist
         db.collection("database_names")
                 .document("uid")
                 .get()
@@ -69,6 +65,8 @@ public class FirebaseDatabaseManager {
 
                         DocumentSnapshot documentSnapshot = task.getResult();
                         databaseNames = (ArrayList<String>) documentSnapshot.get("names");
+
+                        //If company is present then add new company in the arraylist and send the new arraylist to firestore
                         if(databaseNames != null) {
                             Log.d("Debug", "FirebaseDatabaseManager : Old Array " + databaseNames.toString());
                             if(!databaseNames.contains(name)) {
