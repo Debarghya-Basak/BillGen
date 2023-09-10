@@ -57,12 +57,9 @@
                             android:layout_weight="1"
 
                             android:text="Load Company"
-                            android:textSize="15sp"
+                            android:textSize="10sp"
 
                             android:theme="@style/FilledIconTextButton"/>
-
-
-                        <!--    </LinearLayout>-->
                 </LinearLayout>
 
         </androidx.cardview.widget.CardView>
