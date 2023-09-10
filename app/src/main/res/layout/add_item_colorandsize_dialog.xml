@@ -24,7 +24,7 @@
             android:layout_margin="10sp"
 
             android:text="Add item"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             android:theme="@style/FilledIconTextButton"/>
 
@@ -36,7 +36,7 @@
 
 
             android:text="Add Color or Size"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             android:theme="@style/OutlinedIconTextButton"/>
 
