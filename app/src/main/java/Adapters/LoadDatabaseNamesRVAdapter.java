@@ -29,7 +29,7 @@ public class LoadDatabaseNamesRVAdapter extends RecyclerView.Adapter<LoadDatabas
     public LoadDatabaseNamesRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.database_names_item_rv, null);
+        View view = inflater.inflate(R.layout.database_names_item_rv, parent,false);
 
         return new ViewHolder(view);
     }
