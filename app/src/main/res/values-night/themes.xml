@@ -39,7 +39,9 @@
         <item name="android:windowSoftInputMode">adjustResize|adjustPan</item>
 
         <item name="imageViewTint">@color/md_theme_light_secondary</item>
-        <item name="containerCardColor">@color/md_theme_dark_background_dark</item>
+        <item name="cardColor">@color/md_theme_dark_tertiaryContainer</item>
+        <item name="containerBackgroundColor">@color/md_theme_dark_background_dark</item>
+
 
     </style>
 
