@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:background="?attr/bottomDialogBackgroundColor">
@@ -13,33 +13,214 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        android:orientation="horizontal"
+        android:orientation="vertical">
 
->
-
-        <com.google.android.material.button.MaterialButton
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="10sp"
 
-            android:text="Add item"
-            android:textSize="15sp"
+            android:orientation="horizontal"
+            android:visibility="visible">
 
-            android:theme="@style/FilledIconTextButton"/>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10sp"
 
-        <com.google.android.material.button.MaterialButton
+                android:text="Add item"
+                android:textSize="15sp"
+
+                android:theme="@style/FilledIconTextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10sp"
+
+
+                android:text="Add Color or Size"
+                android:textSize="15sp"
+
+                android:theme="@style/OutlinedIconTextButton"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="10sp"
 
+            android:visibility="gone"
 
-            android:text="Add Color or Size"
-            android:textSize="15sp"
+            android:orientation="vertical">
 
-            android:theme="@style/OutlinedIconTextButton"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="Enter item name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+
+                android:text="Search Results"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200sp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200sp"
+
+                    android:background="@drawable/container_card"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200sp"
+                    android:layout_margin="20sp"
+
+                    android:requiresFadingEdge="vertical"
+                    android:fadingEdge="vertical"
+                    android:fadingEdgeLength="20sp"/>
+
+
+            </FrameLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+
+            android:visibility="visible"
+
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="Enter color or size">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+
+                android:text="Search Results"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200sp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200sp"
+
+                    android:background="@drawable/container_card"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200sp"
+                    android:layout_margin="20sp"
+
+                    android:requiresFadingEdge="vertical"
+                    android:fadingEdge="vertical"
+                    android:fadingEdgeLength="20sp"/>
+
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+
+                    android:hint="Enter quantity">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10sp"
+
+                android:text="Add"
+                android:textSize="15sp"
+
+                android:theme="@style/FilledIconTextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10sp"
+
+
+                android:text="Cancel"
+                android:textSize="15sp"
+
+                android:theme="@style/OutlinedIconTextButton"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

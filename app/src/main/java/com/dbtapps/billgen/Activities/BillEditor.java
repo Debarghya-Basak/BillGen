@@ -3,6 +3,7 @@ package com.dbtapps.billgen.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.dbtapps.billgen.R;
 import com.dbtapps.billgen.databinding.ActivityBillEditorBinding;
@@ -39,6 +40,7 @@ public class BillEditor extends AppCompatActivity {
     private void showBottomSheetDialog(){
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.add_item_colorandsize_dialog);
+        bottomSheetDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         bottomSheetDialog.show();
     }
 
