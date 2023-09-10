@@ -5,5 +5,6 @@
         <attr name="cardColor" format="reference" />
         <attr name="containerBackgroundColor" format="reference" />
         <attr name="bottomDialogBackgroundColor" format="reference" />
+        <attr name="bottomDialogPullIconColor" format="reference" />
     </declare-styleable>
 </resources>
