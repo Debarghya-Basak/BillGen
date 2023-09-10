@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "545841241808",
+    "project_id": "billgen-8f614",
+    "storage_bucket": "billgen-8f614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545841241808:android:021fa9003918f476eb08d5",
+        "android_client_info": {
+          "package_name": "com.dbtapps.billgen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCenM-7FNQuqMWGeGHPUH-IY2qN5O0TPY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

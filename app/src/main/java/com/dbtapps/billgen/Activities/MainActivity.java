@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dbtapps.billgen.databinding.ActivityMainBinding;
 
 import DatabaseManager.DatabaseManager;
+import DatabaseManager.FirebaseDatabaseManager;
 import DatabaseManager.SqliteDatabaseConnections;
 import Utilities.PermissionManager;
 
@@ -27,13 +28,15 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //TODO: SQLite datbase code
         dbnamesInit();
         permissionManager();
         btnListeners();
     }
 
     private void dbnamesInit() {
-        SqliteDatabaseConnections.DBNAMES = new DatabaseManager(this).getWritableDatabase();
+        //SqliteDatabaseConnections.DBNAMES = new DatabaseManager(this).getWritableDatabase();
+        FirebaseDatabaseManager.init();
     }
 
     private void permissionManager() {

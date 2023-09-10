@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import Adapters.LoadDatabaseNamesRVAdapter;
 import DatabaseManager.DatabaseManager;
+import DatabaseManager.FirebaseDatabaseManager;
 
 public class LoadCompanyActivity extends AppCompatActivity {
 
@@ -25,7 +26,15 @@ public class LoadCompanyActivity extends AppCompatActivity {
         binding = ActivityLoadCompanyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        loadDatabaseNamesFromDatabase();
+        //TODO: SQlite database codes
+        //loadDatabaseNamesFromDatabase();
+        loadDatabaseNamesFromFirebase();
+    }
+
+    private void loadDatabaseNamesFromFirebase() {
+
+        FirebaseDatabaseManager.getDatabaseNamesFromFirebase(this, binding.databaseNamesRv);
+
     }
 
     private void loadDatabaseNamesFromDatabase() {

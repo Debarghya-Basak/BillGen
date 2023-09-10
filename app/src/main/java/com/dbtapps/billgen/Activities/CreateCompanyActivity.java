@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.dbtapps.billgen.databinding.ActivityCreateCompanyBinding;
 
 import DatabaseManager.DatabaseDataHandler;
-import DatabaseManager.DatabaseManager;
+import DatabaseManager.FirebaseDatabaseManager;
 import DatabaseManager.SqliteDatabaseConnections;
 
 public class CreateCompanyActivity extends AppCompatActivity {
@@ -30,13 +30,16 @@ public class CreateCompanyActivity extends AppCompatActivity {
         binding.submitBtn.setOnClickListener(v -> {
             binding.companyNameTil.clearFocus();
 
-            if(new DatabaseManager(this).contains(binding.companyNameTiet.getText().toString())){
-                Toast.makeText(this, "Company already present", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                SqliteDatabaseConnections.DBDATA = new DatabaseDataHandler(this, binding.companyNameTiet.getText().toString()).getWritableDatabase();
-                new DatabaseManager(this).addDatabaseName(binding.companyNameTiet.getText().toString());
-            }
+            FirebaseDatabaseManager.addDatabaseNameToFirebase(this, binding.companyNameTiet.getText().toString());
+
+            //TODO: SQlite Database code
+//            if(new DatabaseManager(this).contains(binding.companyNameTiet.getText().toString())){
+//                Toast.makeText(this, "Company already present", Toast.LENGTH_SHORT).show();
+//            }
+//            else {
+//                SqliteDatabaseConnections.DBDATA = new DatabaseDataHandler(this, binding.companyNameTiet.getText().toString()).getWritableDatabase();
+//                new DatabaseManager(this).addDatabaseName(binding.companyNameTiet.getText().toString());
+//            }
 
         });
     }
