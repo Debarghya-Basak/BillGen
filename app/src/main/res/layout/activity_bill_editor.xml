@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/topAppBarTab"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnContainerLl"
+        app:layout_constraintBottom_toTopOf="@id/totalPriceContainerLl"
 
         android:background="@drawable/container_card"
         />
@@ -64,11 +64,45 @@
         app:layout_constraintBottom_toBottomOf="@id/containerCardIv"/>
 
     <LinearLayout
+        android:id="@+id/totalPriceContainerLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/containerCardIv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnContainerLl"
+        android:layout_margin="10sp"
+        android:gravity="end"
+
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Total Price : "
+
+            android:theme="@style/textView20"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/totalPriceDisplayMtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Rs. 0.0"
+            android:textStyle="bold"
+
+            android:theme="@style/textView20"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/btnContainerLl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        app:layout_constraintTop_toBottomOf="@id/containerCardIv"
+        app:layout_constraintTop_toBottomOf="@id/totalPriceContainerLl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

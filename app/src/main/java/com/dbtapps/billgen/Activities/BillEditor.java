@@ -224,6 +224,8 @@ public class BillEditor extends AppCompatActivity {
                     binding.billItemCardsRv.setAdapter(rvAdapter);
                     binding.billItemCardsRv.setLayoutManager(new LinearLayoutManager(this));
                     binding.billItemCardsRv.scrollToPosition(bill.size()-1);
+
+                    calculateTotalPrice();
                 }
                 else{
                     Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();
@@ -251,6 +253,8 @@ public class BillEditor extends AppCompatActivity {
                     binding.billItemCardsRv.setAdapter(rvAdapter);
                     binding.billItemCardsRv.setLayoutManager(new LinearLayoutManager(this));
                     binding.billItemCardsRv.scrollToPosition(bill.size()-1);
+
+                    calculateTotalPrice();
                 }
                 else{
                     Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();
@@ -268,12 +272,24 @@ public class BillEditor extends AppCompatActivity {
 
     }
 
+    private void calculateTotalPrice(){
+        double totalPrice = 0.0;
+
+        for(Map<String, String> item : bill){
+            if(item.get("Type").equals("ColorOrSize"))
+                totalPrice += Double.parseDouble(item.get("Quantity")) * Double.parseDouble(item.get("PricePerUnit"));
+        }
+
+        binding.totalPriceDisplayMtv.setText("Rs. " + totalPrice);
+    }
+
     public void updateRecyclerView(int position){
         BillEditorCardsRvAdapter rvAdapter = new BillEditorCardsRvAdapter(this, this);
         binding.billItemCardsRv.setAdapter(rvAdapter);
         binding.billItemCardsRv.setLayoutManager(new LinearLayoutManager(this));
         binding.billItemCardsRv.scrollToPosition(position);
 
+        calculateTotalPrice();
     }
 
 }
