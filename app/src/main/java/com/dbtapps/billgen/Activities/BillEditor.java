@@ -39,7 +39,7 @@ public class BillEditor extends AppCompatActivity {
     private String lastItemGroupName = "";
     private int chooseItemOrColorOrSizeFlag = -1;
     private ArrayAdapter<String> listAdapter;
-    private String itemUnitArr[] = {"Kg", "Gm", "Ct", "Rt", "Tl"};
+    private String itemUnitArr[] = {"Pc", "Kg", "Gm", "Ct", "Rt", "Tl"};
 
 
     @Override
