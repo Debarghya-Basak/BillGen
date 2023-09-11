@@ -31,8 +31,9 @@ public class BillEditor extends AppCompatActivity {
     private ArrayList<Map<String, String>> bill;
     private Map<String, String> billItem;
     private int chooseItemOrColorOrSizeFlag = -1;
-    String tempArr[] = {"Hello", "My", "Name", "Is", "Debarghya", "Basak","And","My","Parent's","Name","Is","Debasish Basak","And","Debashree Basak"};
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> listAdapter;
+    //String tempArr[] = {"Hello", "My", "Name", "Is", "Debarghya", "Basak","And","My","Parent's","Name","Is","Debasish Basak","And","Debashree Basak"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +85,8 @@ public class BillEditor extends AppCompatActivity {
 
             //TODO: TEMPORARY
             if(FirebaseDatabaseDataHandler.items != null) {
-                adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.items);
-                itemNameActv.setAdapter(adapter);
+                listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.items);
+                itemNameActv.setAdapter(listAdapter);
                 itemNameActv.setDropDownHeight(0);
 
                 itemNameActv.addTextChangedListener(new TextWatcher() {
@@ -118,8 +119,8 @@ public class BillEditor extends AppCompatActivity {
 
             //TODO: TEMPORARY
             if(FirebaseDatabaseDataHandler.colorsorsizes != null) {
-                adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.colorsorsizes);
-                colorOrSizeActv.setAdapter(adapter);
+                listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.colorsorsizes);
+                colorOrSizeActv.setAdapter(listAdapter);
                 colorOrSizeActv.setDropDownHeight(0);
 
                 colorOrSizeActv.addTextChangedListener(new TextWatcher() {
