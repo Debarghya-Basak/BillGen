@@ -34,6 +34,7 @@ public class BillEditor extends AppCompatActivity {
     private ActivityBillEditorBinding binding;
     private ArrayList<Map<String, String>> bill;
     private Map<String, String> billItem;
+    private String lastItemGroupName = "";
     private int chooseItemOrColorOrSizeFlag = -1;
     private ArrayAdapter<String> listAdapter;
     private String itemUnitArr[] = {"Kg", "Ct", "Gm", "Rt"};
@@ -84,37 +85,79 @@ public class BillEditor extends AppCompatActivity {
         TextInputEditText pricePerUnitTiet = bottomSheetDialog.findViewById(R.id.pricePerUnitTiet);
 
         addItemBtn.setOnClickListener(v -> {
-            addItemAddColorOrSizeBtnContainerLl.setVisibility(View.GONE);
-            addItemContainerLl.setVisibility(View.VISIBLE);
-            addCancelBtnContainerLl.setVisibility(View.VISIBLE);
+            if(bill.size() == 0) {
+                addItemAddColorOrSizeBtnContainerLl.setVisibility(View.GONE);
+                addItemContainerLl.setVisibility(View.VISIBLE);
+                addCancelBtnContainerLl.setVisibility(View.VISIBLE);
 
-            chooseItemOrColorOrSizeFlag = 0;
+                chooseItemOrColorOrSizeFlag = 0;
 
-            //TODO: TEMPORARY
-            if(FirebaseDatabaseDataHandler.item_names != null) {
-                listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.item_names);
-                itemNameActv.setAdapter(listAdapter);
-                itemNameActv.setDropDownHeight(0);
+                //TODO: TEMPORARY
+                if (FirebaseDatabaseDataHandler.item_names != null) {
+                    listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.item_names);
+                    itemNameActv.setAdapter(listAdapter);
+                    itemNameActv.setDropDownHeight(0);
 
-                itemNameActv.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    itemNameActv.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (count != 0)
-                            itemNameActv.setDropDownHeight(WRAP_CONTENT);
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            if (count != 0)
+                                itemNameActv.setDropDownHeight(WRAP_CONTENT);
 
-                    }
+                        }
 
-                    @Override
-                    public void afterTextChanged(Editable s) {
+                        @Override
+                        public void afterTextChanged(Editable s) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }
+            else if(bill.size() != 0){
+
+                if(bill.get(bill.size()-1).get("Type").equals("Item"))
+                    Toast.makeText(this, "Please delete the previous item group to add another item.",Toast.LENGTH_SHORT).show();
+                else{
+                    addItemAddColorOrSizeBtnContainerLl.setVisibility(View.GONE);
+                    addItemContainerLl.setVisibility(View.VISIBLE);
+                    addCancelBtnContainerLl.setVisibility(View.VISIBLE);
+
+                    chooseItemOrColorOrSizeFlag = 0;
+
+                    //TODO: TEMPORARY
+                    if (FirebaseDatabaseDataHandler.item_names != null) {
+                        listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.item_names);
+                        itemNameActv.setAdapter(listAdapter);
+                        itemNameActv.setDropDownHeight(0);
+
+                        itemNameActv.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                if (count != 0)
+                                    itemNameActv.setDropDownHeight(WRAP_CONTENT);
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+
+                            }
+                        });
+                    }
+                }
+
+            }
+
         });
 
         addColorOrSizeBtn.setOnClickListener(v -> {
@@ -184,6 +227,7 @@ public class BillEditor extends AppCompatActivity {
                 if(!(TextUtils.isEmpty(colorOrSizeActv.getText()) || TextUtils.isEmpty(quantityTiet.getText()) || TextUtils.isEmpty(itemUnitActv.getText()) || TextUtils.isEmpty(pricePerUnitTiet.getText()))) {
                     billItem = new HashMap<>();
                     billItem.put("Type", "ColorOrSize");
+                    billItem.put("Name", lastItemGroupName);
                     billItem.put("ColorOrSize", colorOrSizeActv.getText().toString());
                     billItem.put("Quantity", quantityTiet.getText().toString());
                     billItem.put("Unit", itemUnitActv.getText().toString());
