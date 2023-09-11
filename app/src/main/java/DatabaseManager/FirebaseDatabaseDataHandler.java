@@ -86,4 +86,27 @@ public class FirebaseDatabaseDataHandler {
         }
 
     }
+
+    public static void addPricePerUnitToDatabase(Context context, String key, String value) {
+
+        if(price_list_table == null)
+            price_list_table = new HashMap<>();
+
+        if((price_list_table.containsKey(key) && !price_list_table.get(key).toString().equals(value)) || !price_list_table.containsKey(key)){
+
+            price_list_table.put(key, Double.parseDouble(value));
+
+            Map<String, HashMap<String, Double>> data = new HashMap<>();
+            data.put("price_list_table", price_list_table);
+
+            FirebaseDatabaseManager.db.collection(FirebaseDatabaseConnections.connectedDatabaseName)
+                    .document("price_list")
+                    .set(data)
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(context, "Cant add Color or size names to database", Toast.LENGTH_SHORT).show();
+                    });
+
+        }
+
+    }
 }

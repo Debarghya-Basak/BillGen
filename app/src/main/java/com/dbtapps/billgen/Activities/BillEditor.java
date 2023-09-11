@@ -238,6 +238,7 @@ public class BillEditor extends AppCompatActivity {
                     billItem.put("Type", "Item");
                     billItem.put("Name", itemNameActv.getText().toString());
                     lastItemGroupName = itemNameActv.getText().toString();
+                    Log.d("Debug", "BillEditor : LastItemGroupName -> " + lastItemGroupName);
 
                     bill.add(billItem);
                     Log.d("Debug", "BillEditor : " + itemNameActv.getText().toString());
@@ -269,9 +270,12 @@ public class BillEditor extends AppCompatActivity {
                     billItem.put("PricePerUnit", pricePerUnitTiet.getText().toString());
 
                     bill.add(billItem);
-                    Log.d("Debug", "BillEditor : Unit -> " + billItem.get("Unit"));
+                    //Log.d("Debug", "BillEditor : Unit -> " + billItem.get("Unit"));
 
                     FirebaseDatabaseDataHandler.addColorOrSizeToDatabase(this, colorOrSizeActv.getText().toString());
+                    FirebaseDatabaseDataHandler.addPricePerUnitToDatabase(this,
+                            lastItemGroupName + "||--||" + colorOrSizeActv.getText().toString()  + "||--||" + itemUnitActv.getText().toString(),
+                            pricePerUnitTiet.getText().toString());
 
                     bottomSheetDialog.dismiss();
 
@@ -312,10 +316,27 @@ public class BillEditor extends AppCompatActivity {
     private void searchPriceList(String search, TextInputEditText pricePerUnitTiet){
         if(FirebaseDatabaseDataHandler.price_list_table.get(search) != null)
             pricePerUnitTiet.setText(FirebaseDatabaseDataHandler.price_list_table.get(search).toString());
-        else{
-            pricePerUnitTiet.setText("");
-        }
+//        else{
+//            pricePerUnitTiet.setText("");
+//        }
 
+    }
+
+    private void searchLastItemGroup(){
+        if(bill.size() == 0){
+            lastItemGroupName = "";
+            Log.d("Debug", "BillEditor : LastItemGroupName -> " + lastItemGroupName);
+
+        }
+        else{
+            for(int i=bill.size()-1; i>=0; i--){
+                if(bill.get(i).get("Type").equals("Item")) {
+                    lastItemGroupName = bill.get(i).get("Name");
+                    Log.d("Debug", "BillEditor : LastItemGroupName -> " + lastItemGroupName);
+                    break;
+                }
+            }
+        }
     }
 
     public void updateRecyclerView(int position){
@@ -325,6 +346,7 @@ public class BillEditor extends AppCompatActivity {
         binding.billItemCardsRv.scrollToPosition(position);
 
         calculateTotalPrice();
+        searchLastItemGroup();
     }
 
 }
