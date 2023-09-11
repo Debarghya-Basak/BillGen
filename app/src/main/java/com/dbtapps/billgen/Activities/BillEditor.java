@@ -186,13 +186,38 @@ public class BillEditor extends AppCompatActivity {
 
                         @Override
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
-                            if (count != 0)
+                            if (count != 0) {
                                 colorOrSizeActv.setDropDownHeight(WRAP_CONTENT);
+                            }
                         }
 
                         @Override
                         public void afterTextChanged(Editable s) {
+                            //Autofill price per unit in bottom sheet dialog box
+                            if(!TextUtils.isEmpty(itemUnitActv.getText())){
+                                searchPriceList(lastItemGroupName + "||--||" + colorOrSizeActv.getText().toString()  + "||--||" + itemUnitActv.getText().toString(), pricePerUnitTiet);
+                            }
+                        }
+                    });
 
+                    //Added totally for autofill price per unit box
+                    itemUnitActv.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            //Autofill price per unit in bottom sheet dialog box
+                            if(!TextUtils.isEmpty(colorOrSizeActv.getText())){
+                                searchPriceList(lastItemGroupName + "||--||" + colorOrSizeActv.getText().toString()  + "||--||" + itemUnitActv.getText().toString(), pricePerUnitTiet);
+                            }
                         }
                     });
                 }
@@ -212,6 +237,7 @@ public class BillEditor extends AppCompatActivity {
                     billItem = new HashMap<>();
                     billItem.put("Type", "Item");
                     billItem.put("Name", itemNameActv.getText().toString());
+                    lastItemGroupName = itemNameActv.getText().toString();
 
                     bill.add(billItem);
                     Log.d("Debug", "BillEditor : " + itemNameActv.getText().toString());
@@ -281,6 +307,15 @@ public class BillEditor extends AppCompatActivity {
         }
 
         binding.totalPriceDisplayMtv.setText("Rs. " + totalPrice);
+    }
+
+    private void searchPriceList(String search, TextInputEditText pricePerUnitTiet){
+        if(FirebaseDatabaseDataHandler.price_list_table.get(search) != null)
+            pricePerUnitTiet.setText(FirebaseDatabaseDataHandler.price_list_table.get(search).toString());
+        else{
+            pricePerUnitTiet.setText("");
+        }
+
     }
 
     public void updateRecyclerView(int position){
