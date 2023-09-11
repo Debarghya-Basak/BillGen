@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import DatabaseManager.FirebaseDatabaseConnections;
+import DatabaseManager.FirebaseDatabaseDataHandler;
 
 public class BillEditor extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class BillEditor extends AppCompatActivity {
     private Map<String, String> billItem;
     private int chooseItemOrColorOrSizeFlag = -1;
     String tempArr[] = {"Hello", "My", "Name", "Is", "Debarghya", "Basak","And","My","Parent's","Name","Is","Debasish Basak","And","Debashree Basak"};
-    ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,8 @@ public class BillEditor extends AppCompatActivity {
     private void initPage(){
         binding.companyNameDisplayMtv.setText(FirebaseDatabaseConnections.connectedDatabaseName);
         bill = new ArrayList<>();
+
+        FirebaseDatabaseDataHandler.receiveDataSnapshotsFromDatabase();
     }
 
     private void btnListeners() {
@@ -80,28 +83,30 @@ public class BillEditor extends AppCompatActivity {
             chooseItemOrColorOrSizeFlag = 0;
 
             //TODO: TEMPORARY
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tempArr);
-            itemNameActv.setAdapter(adapter);
-            itemNameActv.setDropDownHeight(0);
+            if(FirebaseDatabaseDataHandler.items != null) {
+                adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.items);
+                itemNameActv.setAdapter(adapter);
+                itemNameActv.setDropDownHeight(0);
 
-            itemNameActv.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                itemNameActv.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
+                    }
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if(count != 0)
-                        itemNameActv.setDropDownHeight(WRAP_CONTENT);
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (count != 0)
+                            itemNameActv.setDropDownHeight(WRAP_CONTENT);
 
-                }
+                    }
 
-                @Override
-                public void afterTextChanged(Editable s) {
+                    @Override
+                    public void afterTextChanged(Editable s) {
 
-                }
-            });
+                    }
+                });
+            }
         });
 
         addColorOrSizeBtn.setOnClickListener(v -> {
@@ -112,27 +117,29 @@ public class BillEditor extends AppCompatActivity {
             chooseItemOrColorOrSizeFlag = 1;
 
             //TODO: TEMPORARY
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tempArr);
-            colorOrSizeActv.setAdapter(adapter);
-            colorOrSizeActv.setDropDownHeight(0);
+            if(FirebaseDatabaseDataHandler.colorsorsizes != null) {
+                adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.colorsorsizes);
+                colorOrSizeActv.setAdapter(adapter);
+                colorOrSizeActv.setDropDownHeight(0);
 
-            colorOrSizeActv.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                colorOrSizeActv.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
+                    }
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if(count != 0)
-                        colorOrSizeActv.setDropDownHeight(WRAP_CONTENT);
-                }
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (count != 0)
+                            colorOrSizeActv.setDropDownHeight(WRAP_CONTENT);
+                    }
 
-                @Override
-                public void afterTextChanged(Editable s) {
+                    @Override
+                    public void afterTextChanged(Editable s) {
 
-                }
-            });
+                    }
+                });
+            }
         });
 
         addBtn.setOnClickListener(v -> {
