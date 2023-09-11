@@ -91,8 +91,8 @@ public class BillEditor extends AppCompatActivity {
             chooseItemOrColorOrSizeFlag = 0;
 
             //TODO: TEMPORARY
-            if(FirebaseDatabaseDataHandler.items != null) {
-                listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.items);
+            if(FirebaseDatabaseDataHandler.item_names != null) {
+                listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.item_names);
                 itemNameActv.setAdapter(listAdapter);
                 itemNameActv.setDropDownHeight(0);
 
@@ -128,8 +128,8 @@ public class BillEditor extends AppCompatActivity {
                 chooseItemOrColorOrSizeFlag = 1;
 
                 //TODO: TEMPORARY
-                if (FirebaseDatabaseDataHandler.colorsorsizes != null) {
-                    listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.colorsorsizes);
+                if (FirebaseDatabaseDataHandler.colororsize_names != null) {
+                    listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.colororsize_names);
                     colorOrSizeActv.setAdapter(listAdapter);
                     colorOrSizeActv.setDropDownHeight(0);
 
@@ -171,6 +171,8 @@ public class BillEditor extends AppCompatActivity {
                     bill.add(billItem);
                     Log.d("Debug", "BillEditor : " + itemNameActv.getText().toString());
 
+                    FirebaseDatabaseDataHandler.addItemNameToDatabase(this, itemNameActv.getText().toString());
+
                     bottomSheetDialog.dismiss();
                 }
                 else{
@@ -190,6 +192,9 @@ public class BillEditor extends AppCompatActivity {
                     bill.add(billItem);
                     Log.d("Debug", "BillEditor : Unit -> " + billItem.get("Unit"));
 
+                    FirebaseDatabaseDataHandler.addColorOrSizeToDatabase(this, colorOrSizeActv.getText().toString());
+
+                    bottomSheetDialog.dismiss();
                 }
                 else{
                     Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();
