@@ -6,17 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.dbtapps.billgen.R;
 import com.dbtapps.billgen.databinding.ActivityBillEditorBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +36,7 @@ public class BillEditor extends AppCompatActivity {
     private Map<String, String> billItem;
     private int chooseItemOrColorOrSizeFlag = -1;
     private ArrayAdapter<String> listAdapter;
-    //String tempArr[] = {"Hello", "My", "Name", "Is", "Debarghya", "Basak","And","My","Parent's","Name","Is","Debasish Basak","And","Debashree Basak"};
+    private String itemUnitArr[] = {"Kg", "Ct", "Gm", "Rt"};
 
 
     @Override
@@ -75,6 +79,9 @@ public class BillEditor extends AppCompatActivity {
         MaterialButton cancelBtn = bottomSheetDialog.findViewById(R.id.cancelBtn);
         AutoCompleteTextView itemNameActv = bottomSheetDialog.findViewById(R.id.itemNameActv);
         AutoCompleteTextView colorOrSizeActv = bottomSheetDialog.findViewById(R.id.colorOrSizeActv);
+        AutoCompleteTextView itemUnitActv = bottomSheetDialog.findViewById(R.id.itemUnitActv);
+        TextInputEditText quantityTiet = bottomSheetDialog.findViewById(R.id.quantityTiet);
+        TextInputEditText pricePerUnitTiet = bottomSheetDialog.findViewById(R.id.pricePerUnitTiet);
 
         addItemBtn.setOnClickListener(v -> {
             addItemAddColorOrSizeBtnContainerLl.setVisibility(View.GONE);
@@ -111,49 +118,83 @@ public class BillEditor extends AppCompatActivity {
         });
 
         addColorOrSizeBtn.setOnClickListener(v -> {
-            addItemAddColorOrSizeBtnContainerLl.setVisibility(View.GONE);
-            addColorOrSizeContainerLl.setVisibility(View.VISIBLE);
-            addCancelBtnContainerLl.setVisibility(View.VISIBLE);
 
-            chooseItemOrColorOrSizeFlag = 1;
+            if(bill.size() != 0) {
 
-            //TODO: TEMPORARY
-            if(FirebaseDatabaseDataHandler.colorsorsizes != null) {
-                listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.colorsorsizes);
-                colorOrSizeActv.setAdapter(listAdapter);
-                colorOrSizeActv.setDropDownHeight(0);
+                addItemAddColorOrSizeBtnContainerLl.setVisibility(View.GONE);
+                addColorOrSizeContainerLl.setVisibility(View.VISIBLE);
+                addCancelBtnContainerLl.setVisibility(View.VISIBLE);
 
-                colorOrSizeActv.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                chooseItemOrColorOrSizeFlag = 1;
 
-                    }
+                //TODO: TEMPORARY
+                if (FirebaseDatabaseDataHandler.colorsorsizes != null) {
+                    listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, FirebaseDatabaseDataHandler.colorsorsizes);
+                    colorOrSizeActv.setAdapter(listAdapter);
+                    colorOrSizeActv.setDropDownHeight(0);
 
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (count != 0)
-                            colorOrSizeActv.setDropDownHeight(WRAP_CONTENT);
-                    }
+                    colorOrSizeActv.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                    @Override
-                    public void afterTextChanged(Editable s) {
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            if (count != 0)
+                                colorOrSizeActv.setDropDownHeight(WRAP_CONTENT);
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+
+                        }
+                    });
+                }
+
+                ArrayAdapter<String> itemUnitAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemUnitArr);
+                itemUnitActv.setAdapter(itemUnitAdapter);
+            }
+            else{
+                Toast.makeText(this, "Add an item first to add color or sizes.", Toast.LENGTH_SHORT).show();
             }
         });
 
         addBtn.setOnClickListener(v -> {
-            bottomSheetDialog.dismiss();
 
             if(chooseItemOrColorOrSizeFlag == 0){
-                billItem = new HashMap<>();
-                billItem.put("Type", "AddItem");
-//                billItem.put("ItemName", itemNameActv);
+                if(!TextUtils.isEmpty(itemNameActv.getText())) {
+                    billItem = new HashMap<>();
+                    billItem.put("Type", "Item");
+                    billItem.put("ItemName", itemNameActv.getText().toString());
+
+                    bill.add(billItem);
+                    Log.d("Debug", "BillEditor : " + itemNameActv.getText().toString());
+
+                    bottomSheetDialog.dismiss();
+                }
+                else{
+                    Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();
+                }
             }
             else if(chooseItemOrColorOrSizeFlag == 1){
-                billItem = new HashMap<>();
-                billItem.put("Type", "AddColorOrSize");
+
+                if(!(TextUtils.isEmpty(colorOrSizeActv.getText()) || TextUtils.isEmpty(quantityTiet.getText()) || TextUtils.isEmpty(itemUnitActv.getText()) || TextUtils.isEmpty(pricePerUnitTiet.getText()))) {
+                    billItem = new HashMap<>();
+                    billItem.put("Type", "ColorOrSize");
+                    billItem.put("ColorOrSize", colorOrSizeActv.getText().toString());
+                    billItem.put("Quantity", quantityTiet.getText().toString());
+                    billItem.put("Unit", itemUnitActv.getText().toString());
+                    billItem.put("PricePerUnit", pricePerUnitTiet.getText().toString());
+
+                    bill.add(billItem);
+                    Log.d("Debug", "BillEditor : Unit -> " + billItem.get("Unit"));
+
+                }
+                else{
+                    Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
         });
@@ -163,8 +204,7 @@ public class BillEditor extends AppCompatActivity {
         });
 
         bottomSheetDialog.show();
+
     }
-
-
 
 }
