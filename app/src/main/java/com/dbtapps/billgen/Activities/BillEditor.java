@@ -3,6 +3,7 @@ package com.dbtapps.billgen.Activities;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import Adapters.BillEditorCardsRvAdapter;
 import DatabaseManager.FirebaseDatabaseConnections;
 import DatabaseManager.FirebaseDatabaseDataHandler;
 
@@ -37,7 +39,7 @@ public class BillEditor extends AppCompatActivity {
     private String lastItemGroupName = "";
     private int chooseItemOrColorOrSizeFlag = -1;
     private ArrayAdapter<String> listAdapter;
-    private String itemUnitArr[] = {"Kg", "Ct", "Gm", "Rt"};
+    private String itemUnitArr[] = {"Kg", "Gm", "Ct", "Rt", "Tl"};
 
 
     @Override
@@ -209,7 +211,7 @@ public class BillEditor extends AppCompatActivity {
                 if(!TextUtils.isEmpty(itemNameActv.getText())) {
                     billItem = new HashMap<>();
                     billItem.put("Type", "Item");
-                    billItem.put("ItemName", itemNameActv.getText().toString());
+                    billItem.put("Name", itemNameActv.getText().toString());
 
                     bill.add(billItem);
                     Log.d("Debug", "BillEditor : " + itemNameActv.getText().toString());
@@ -217,6 +219,10 @@ public class BillEditor extends AppCompatActivity {
                     FirebaseDatabaseDataHandler.addItemNameToDatabase(this, itemNameActv.getText().toString());
 
                     bottomSheetDialog.dismiss();
+
+                    BillEditorCardsRvAdapter rvAdapter = new BillEditorCardsRvAdapter(this, bill);
+                    binding.billItemCardsRv.setAdapter(rvAdapter);
+                    binding.billItemCardsRv.setLayoutManager(new LinearLayoutManager(this));
                 }
                 else{
                     Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();
@@ -239,6 +245,10 @@ public class BillEditor extends AppCompatActivity {
                     FirebaseDatabaseDataHandler.addColorOrSizeToDatabase(this, colorOrSizeActv.getText().toString());
 
                     bottomSheetDialog.dismiss();
+
+                    BillEditorCardsRvAdapter rvAdapter = new BillEditorCardsRvAdapter(this, bill);
+                    binding.billItemCardsRv.setAdapter(rvAdapter);
+                    binding.billItemCardsRv.setLayoutManager(new LinearLayoutManager(this));
                 }
                 else{
                     Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();

@@ -53,6 +53,16 @@
         android:background="@drawable/container_card"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/billItemCardsRv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10sp"
+        app:layout_constraintTop_toTopOf="@id/containerCardIv"
+        app:layout_constraintStart_toStartOf="@id/containerCardIv"
+        app:layout_constraintEnd_toEndOf="@id/containerCardIv"
+        app:layout_constraintBottom_toBottomOf="@id/containerCardIv"/>
+
     <LinearLayout
         android:id="@+id/btnContainerLl"
         android:layout_width="match_parent"

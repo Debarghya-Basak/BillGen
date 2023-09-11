@@ -1,6 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/itemNameDisplayContainerLl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+
+            android:visibility="gone">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/itemNameDisplayMtv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="start"
+
+                android:text="- - -"
+                android:textStyle="bold"
+
+                android:theme="@style/textView40" />
+
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/colorOrSizeDisplayContainerSv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:visibility="gone">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/colorOrSizeDisplayMtv"
+                    android:layout_width="80sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+
+                    android:text="- - -"
+
+                    android:theme="@style/textView20" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:orientation="horizontal">
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/quantityDisplayMtv"
+                        android:layout_width="80sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+
+                        android:text="- - -"
+
+                        android:theme="@style/textView20"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/unitDisplayMtv"
+                        android:layout_width="30sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+
+                        android:text="- - -"
+
+                        android:theme="@style/textView20"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/itemPerUnitPriceDisplayMtv"
+                    android:layout_width="80sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+
+                    android:text="- - -"
+
+                    android:theme="@style/textView20"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/itemTotalPriceDisplayMtv"
+                    android:layout_width="80sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+
+                    android:text="- - -"
+
+                    android:theme="@style/textView20"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/deleteItemBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20sp"
+
+                    android:text="Delete"
+                    android:textSize="10sp"
+
+                    android:theme="@style/FilledIconTextButton"/>
+
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
