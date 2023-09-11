@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:orientation="horizontal"
+            android:orientation="vertical"
 
             android:visibility="gone">
 
@@ -35,6 +35,87 @@
                 android:textStyle="bold"
 
                 android:theme="@style/textView40" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="50sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+
+                        android:text="Color Or Size"
+                        android:textSize="10sp"
+
+                        android:theme="@style/textView20" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="70sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+
+                            android:text="Quantity"
+                            android:textSize="10sp"
+
+                            android:theme="@style/textView20"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+
+                            android:text="Unit"
+                            android:textSize="10sp"
+
+                            android:theme="@style/textView20"/>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="100sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+
+                        android:text="Price/Unit"
+                        android:textSize="10sp"
+
+                        android:theme="@style/textView20"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="100sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+
+                        android:text="Item Total Price"
+                        android:textSize="10sp"
+
+                        android:theme="@style/textView20"/>
+
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
         </LinearLayout>
 
@@ -55,12 +136,12 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/colorOrSizeDisplayMtv"
-                    android:layout_width="80sp"
+                    android:layout_width="50sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
 
-                    android:text="- - -"
+                    android:text="---"
 
                     android:theme="@style/textView20" />
 
@@ -74,23 +155,23 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/quantityDisplayMtv"
-                        android:layout_width="80sp"
+                        android:layout_width="70sp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="start"
+                        android:gravity="end"
 
-                        android:text="- - -"
+                        android:text="-----"
 
                         android:theme="@style/textView20"/>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/unitDisplayMtv"
-                        android:layout_width="30sp"
+                        android:layout_width="50sp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
 
-                        android:text="- - -"
+                        android:text="--"
 
                         android:theme="@style/textView20"/>
 
@@ -98,23 +179,23 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/itemPerUnitPriceDisplayMtv"
-                    android:layout_width="80sp"
+                    android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
 
-                    android:text="- - -"
+                    android:text="-------"
 
                     android:theme="@style/textView20"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/itemTotalPriceDisplayMtv"
-                    android:layout_width="80sp"
+                    android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
 
-                    android:text="- - -"
+                    android:text="-------"
 
                     android:theme="@style/textView20"/>
 
@@ -135,8 +216,6 @@
             </LinearLayout>
 
         </HorizontalScrollView>
-
-
 
     </LinearLayout>
 
