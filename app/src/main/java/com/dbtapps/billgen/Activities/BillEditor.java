@@ -34,7 +34,7 @@ import DatabaseManager.FirebaseDatabaseDataHandler;
 public class BillEditor extends AppCompatActivity {
 
     private ActivityBillEditorBinding binding;
-    private ArrayList<Map<String, String>> bill;
+    public static ArrayList<Map<String, String>> bill;
     private Map<String, String> billItem;
     private String lastItemGroupName = "";
     private int chooseItemOrColorOrSizeFlag = -1;
@@ -220,9 +220,10 @@ public class BillEditor extends AppCompatActivity {
 
                     bottomSheetDialog.dismiss();
 
-                    BillEditorCardsRvAdapter rvAdapter = new BillEditorCardsRvAdapter(this, bill);
+                    BillEditorCardsRvAdapter rvAdapter = new BillEditorCardsRvAdapter(this, this);
                     binding.billItemCardsRv.setAdapter(rvAdapter);
                     binding.billItemCardsRv.setLayoutManager(new LinearLayoutManager(this));
+                    binding.billItemCardsRv.scrollToPosition(bill.size()-1);
                 }
                 else{
                     Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();
@@ -246,9 +247,10 @@ public class BillEditor extends AppCompatActivity {
 
                     bottomSheetDialog.dismiss();
 
-                    BillEditorCardsRvAdapter rvAdapter = new BillEditorCardsRvAdapter(this, bill);
+                    BillEditorCardsRvAdapter rvAdapter = new BillEditorCardsRvAdapter(this, this);
                     binding.billItemCardsRv.setAdapter(rvAdapter);
                     binding.billItemCardsRv.setLayoutManager(new LinearLayoutManager(this));
+                    binding.billItemCardsRv.scrollToPosition(bill.size()-1);
                 }
                 else{
                     Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show();
@@ -263,6 +265,14 @@ public class BillEditor extends AppCompatActivity {
         });
 
         bottomSheetDialog.show();
+
+    }
+
+    public void updateRecyclerView(int position){
+        BillEditorCardsRvAdapter rvAdapter = new BillEditorCardsRvAdapter(this, this);
+        binding.billItemCardsRv.setAdapter(rvAdapter);
+        binding.billItemCardsRv.setLayoutManager(new LinearLayoutManager(this));
+        binding.billItemCardsRv.scrollToPosition(position);
 
     }
 

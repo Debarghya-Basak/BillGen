@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dbtapps.billgen.Activities.BillEditor;
 import com.dbtapps.billgen.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
@@ -21,11 +22,11 @@ import java.util.Map;
 public class BillEditorCardsRvAdapter extends RecyclerView.Adapter<BillEditorCardsRvAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Map<String, String>> bill;
+    private BillEditor billEditor;
 
-    public BillEditorCardsRvAdapter(Context context, ArrayList<Map<String, String>> bill) {
+    public BillEditorCardsRvAdapter(Context context, BillEditor billEditor) {
         this.context = context;
-        this.bill = bill;
+        this.billEditor = billEditor;
     }
 
     @NonNull
@@ -40,24 +41,44 @@ public class BillEditorCardsRvAdapter extends RecyclerView.Adapter<BillEditorCar
 
     @Override
     public void onBindViewHolder(@NonNull BillEditorCardsRvAdapter.ViewHolder holder, int position) {
-        if(bill.get(position).get("Type").equals("Item")){
+        if(BillEditor.bill.get(position).get("Type").equals("Item")){
             holder.itemNameDisplayContainerLl.setVisibility(View.VISIBLE);
-            holder.itemNameDisplayMtv.setText(bill.get(position).get("Name"));
+            holder.itemNameDisplayMtv.setText(BillEditor.bill.get(position).get("Name"));
         }
-        else if(bill.get(position).get("Type").equals("ColorOrSize")){
+        else if(BillEditor.bill.get(position).get("Type").equals("ColorOrSize")){
             holder.colorOrSizeDisplayContainerSv.setVisibility(View.VISIBLE);
-            holder.colorOrSizeDisplayMtv.setText(bill.get(position).get("ColorOrSize"));
-            holder.quantityDisplayMtv.setText(bill.get(position).get("Quantity"));
-            holder.unitDisplayMtv.setText(bill.get(position).get("Unit"));
-            holder.itemPerUnitPriceDisplayMtv.setText(bill.get(position).get("PricePerUnit"));
-            holder.itemTotalPriceDisplayMtv.setText((Double.parseDouble(bill.get(position).get("Quantity")) * Double.parseDouble(bill.get(position).get("PricePerUnit"))) + "");
+            holder.colorOrSizeDisplayMtv.setText(BillEditor.bill.get(position).get("ColorOrSize"));
+            holder.quantityDisplayMtv.setText(BillEditor.bill.get(position).get("Quantity"));
+            holder.unitDisplayMtv.setText(BillEditor.bill.get(position).get("Unit"));
+            holder.itemPerUnitPriceDisplayMtv.setText(BillEditor.bill.get(position).get("PricePerUnit"));
+            holder.itemTotalPriceDisplayMtv.setText((Double.parseDouble(BillEditor.bill.get(position).get("Quantity")) * Double.parseDouble(BillEditor.bill.get(position).get("PricePerUnit"))) + "");
+
+            //TODO: NEW PART ADDED (in-check bit-unstable) (Keep checking all combinations till its stable)
+            holder.deleteItemBtn.setOnClickListener(v -> {
+                //TODO: Give confirmation dialog box for the same
+
+                BillEditor.bill.remove(position);
+
+                if(BillEditor.bill.size() == position){
+                    if(BillEditor.bill.get(position-1).get("Type").equals("Item"))
+                        BillEditor.bill.remove(position - 1);
+
+                }
+                else{
+                    if(BillEditor.bill.get(position).get("Type").equals("Item") && BillEditor.bill.get(position-1).get("Type").equals("Item")){
+                        BillEditor.bill.remove(position - 1);
+                    }
+                }
+
+                billEditor.updateRecyclerView(position);
+            });
         }
 
     }
 
     @Override
     public int getItemCount() {
-        return bill.size();
+        return BillEditor.bill.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
