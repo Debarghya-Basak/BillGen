@@ -50,41 +50,41 @@ public class BillEditor extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         //TODO:TEMPORARY DATA PLS REMOVE AFTER TESTING
-        bill = new ArrayList<>();
-
-        for(int i=0;i<100;i++) {
-            billItem = new HashMap<>();
-            billItem.put("Type", "Item");
-            billItem.put("Name", "Diamonds");
-            bill.add(billItem);
-
-            billItem = new HashMap<>();
-            billItem.put("Type", "ColorOrSize");
-            billItem.put("Name", "Diamonds");
-            billItem.put("ColorOrSize", "Hena");
-            billItem.put("Quantity", "10000");
-            billItem.put("Unit", "Pc");
-            billItem.put("PricePerUnit", "2.5");
-            bill.add(billItem);
-
-            if(i%3 == 0) {
-                billItem = new HashMap<>();
-                billItem.put("Type", "ColorOrSize");
-                billItem.put("Name", "Diamonds");
-                billItem.put("ColorOrSize", "Hena");
-                billItem.put("Quantity", "10000");
-                billItem.put("Unit", "Pc");
-                billItem.put("PricePerUnit", "2.5");
-                bill.add(billItem);
-            }
-
-        }
-
-        generateBill();
+//        bill = new ArrayList<>();
+//
+//        for(int i=0;i<100;i++) {
+//            billItem = new HashMap<>();
+//            billItem.put("Type", "Item");
+//            billItem.put("Name", "Diamonds");
+//            bill.add(billItem);
+//
+//            billItem = new HashMap<>();
+//            billItem.put("Type", "ColorOrSize");
+//            billItem.put("Name", "Diamonds");
+//            billItem.put("ColorOrSize", "Hena");
+//            billItem.put("Quantity", "10000");
+//            billItem.put("Unit", "Pc");
+//            billItem.put("PricePerUnit", "2.5");
+//            bill.add(billItem);
+//
+//            if(i%3 == 0) {
+//                billItem = new HashMap<>();
+//                billItem.put("Type", "ColorOrSize");
+//                billItem.put("Name", "Diamonds");
+//                billItem.put("ColorOrSize", "Hena");
+//                billItem.put("Quantity", "10000");
+//                billItem.put("Unit", "Pc");
+//                billItem.put("PricePerUnit", "2.5");
+//                bill.add(billItem);
+//            }
+//
+//        }
+//
+//        generateBill();
         //TODO: REMOVE TEMPORARY DATA TILL THIS COMMENT
 
-        //initPage(); //TODO: REMOVE COMMENT
-        //btnListeners(); //TODO: REMOVE COMMENT
+        initPage(); //TODO: REMOVE COMMENT
+        btnListeners(); //TODO: REMOVE COMMENT
     }
 
     private void initPage(){
