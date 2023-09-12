@@ -38,16 +38,32 @@ public class PDFMaker extends AppCompatActivity {
         canvas.drawLine(168*3, -592, 168*3, 0, myPaint);
         canvas.drawLine(168*4, -592, 168*4, 0, myPaint);
 
-        myPaint.setTextSize(15);
-        canvas.drawText("12/09/2023 LNGH", 10, -580, myPaint); //TODO: Print Date and time of the bill
+        canvas.drawLine(0, -30, 842, -30, myPaint);
 
-        int lineCounter=-580;
+        int lineCounter = -580;
+        int columnCounter = 10;
+
+        myPaint.setTextSize(15);
+        canvas.drawText("12/09/2023 LNGH", columnCounter, lineCounter, myPaint); //TODO: Print Date and time of the bill
+
         for(Map<String,String> item : BillEditor.bill){
-            if(item.get("Type").equals("Item")){
+
+            if(lineCounter > -30){
+                columnCounter+=168;
+                lineCounter = -580;
+            }
+
+            if(item.get("Type").equals("Item") && lineCounter < -60){
                 myPaint.setTextSize(15);
                 lineCounter+=20;
-                canvas.drawText(item.get("Name"), 10, lineCounter, myPaint);
+                canvas.drawText(item.get("Name"), columnCounter, lineCounter, myPaint);
 
+            }
+            else if(item.get("Type").equals("Item") && lineCounter >= -60){
+                columnCounter+=168;
+                lineCounter = -580;
+                myPaint.setTextSize(15);
+                canvas.drawText(item.get("Name"), columnCounter, lineCounter, myPaint);
             }
             else{
                 myPaint.setTextSize(10);
@@ -64,10 +80,14 @@ public class PDFMaker extends AppCompatActivity {
                         ,(int)Double.parseDouble(item.get("Quantity")) * (int)Double.parseDouble(item.get("PricePerUnit")) + "");
                 Log.d("Debug", "Print testing : "+output);
 
-                canvas.drawText(output, 10, lineCounter, myPaint);
+                canvas.drawText(output, columnCounter, lineCounter, myPaint);
             }
         }
 
+        lineCounter+=25;
+        myPaint.setTextSize(15);
+        myPaint.setFakeBoldText(true);
+        canvas.drawText("TotalPrice : " + BillEditor.totalPrice, columnCounter, lineCounter, myPaint);
 
         canvas.rotate(270);
         //END OF DRAW SECTION

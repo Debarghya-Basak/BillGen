@@ -37,11 +37,11 @@ public class BillEditor extends AppCompatActivity {
     private ActivityBillEditorBinding binding;
     public static ArrayList<Map<String, String>> bill;
     private Map<String, String> billItem;
+    public static double totalPrice = 0.0;
     private String lastItemGroupName = "";
     private int chooseItemOrColorOrSizeFlag = -1;
     private ArrayAdapter<String> listAdapter;
     private String itemUnitArr[] = {"Pc", "Kg", "Gm", "Ct", "Rt", "Tl"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,51 +52,33 @@ public class BillEditor extends AppCompatActivity {
         //TODO:TEMPORARY DATA PLS REMOVE AFTER TESTING
         bill = new ArrayList<>();
 
-        billItem = new HashMap<>();
-        billItem.put("Type", "Item");
-        billItem.put("Name", "Diamonds");
-        bill.add(billItem);
+        for(int i=0;i<60;i++) {
+            billItem = new HashMap<>();
+            billItem.put("Type", "Item");
+            billItem.put("Name", "Diamonds");
+            bill.add(billItem);
 
-        billItem = new HashMap<>();
-        billItem.put("Type", "ColorOrSize");
-        billItem.put("Name", "Diamonds");
-        billItem.put("ColorOrSize", "Hena");
-        billItem.put("Quantity", "10000");
-        billItem.put("Unit", "Pc");
-        billItem.put("PricePerUnit", "2.5");
-        bill.add(billItem);
+            billItem = new HashMap<>();
+            billItem.put("Type", "ColorOrSize");
+            billItem.put("Name", "Diamonds");
+            billItem.put("ColorOrSize", "Hena");
+            billItem.put("Quantity", "10000");
+            billItem.put("Unit", "Pc");
+            billItem.put("PricePerUnit", "2.5");
+            bill.add(billItem);
 
-        billItem = new HashMap<>();
-        billItem.put("Type", "ColorOrSize");
-        billItem.put("Name", "Diamonds");
-        billItem.put("ColorOrSize", "Blu");
-        billItem.put("Quantity", "10");
-        billItem.put("Unit", "Pc");
-        billItem.put("PricePerUnit", "10000");
-        bill.add(billItem);
+            if(i%3 == 0) {
+                billItem = new HashMap<>();
+                billItem.put("Type", "ColorOrSize");
+                billItem.put("Name", "Diamonds");
+                billItem.put("ColorOrSize", "Hena");
+                billItem.put("Quantity", "10000");
+                billItem.put("Unit", "Pc");
+                billItem.put("PricePerUnit", "2.5");
+                bill.add(billItem);
+            }
 
-        billItem = new HashMap<>();
-        billItem.put("Type", "Item");
-        billItem.put("Name", "Diamonds");
-        bill.add(billItem);
-
-        billItem = new HashMap<>();
-        billItem.put("Type", "ColorOrSize");
-        billItem.put("Name", "Diamonds");
-        billItem.put("ColorOrSize", "16");
-        billItem.put("Quantity", "10");
-        billItem.put("Unit", "Pc");
-        billItem.put("PricePerUnit", "2.5");
-        bill.add(billItem);
-
-        billItem = new HashMap<>();
-        billItem.put("Type", "ColorOrSize");
-        billItem.put("Name", "Diamonds");
-        billItem.put("ColorOrSize", "16");
-        billItem.put("Quantity", "10");
-        billItem.put("Unit", "Pc");
-        billItem.put("PricePerUnit", "2.5");
-        bill.add(billItem);
+        }
 
         generateBill();
         //TODO: REMOVE TEMPORARY DATA TILL THIS COMMENT
@@ -369,7 +351,7 @@ public class BillEditor extends AppCompatActivity {
     }
 
     private void calculateTotalPrice(){
-        double totalPrice = 0.0;
+        totalPrice = 0.0;
 
         for(Map<String, String> item : bill){
             if(item.get("Type").equals("ColorOrSize"))
