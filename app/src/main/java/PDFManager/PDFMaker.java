@@ -16,6 +16,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 
+import DatabaseManager.FirebaseDatabaseConnections;
+
 public class PDFMaker extends AppCompatActivity {
 
     public void generate(Context context) {
@@ -52,7 +54,7 @@ public class PDFMaker extends AppCompatActivity {
         canvasArrayList.get(pageCount).drawLine(0, -30, 842, -30, myPaint);
 
         myPaint.setTextSize(15);
-        canvasArrayList.get(pageCount).drawText(day + "/" + month + "/" + year + " LNGH", columnCounter, lineCounter, myPaint); //TODO: Print Date and time of the bill
+        canvasArrayList.get(pageCount).drawText(day + "/" + month + "/" + year + " " + FirebaseDatabaseConnections.connectedDatabaseName, columnCounter, lineCounter, myPaint); //TODO: Print Date and time of the bill
 
         for(Map<String,String> item : BillEditor.bill){
 
