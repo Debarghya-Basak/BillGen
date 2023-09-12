@@ -33,6 +33,11 @@ public class PDFMaker extends AppCompatActivity {
 
         //DRAW SECTION
         canvas.rotate(90);
+        canvas.drawLine(168, -592, 168, 0, myPaint);
+        canvas.drawLine(168*2, -592, 168*2, 0, myPaint);
+        canvas.drawLine(168*3, -592, 168*3, 0, myPaint);
+        canvas.drawLine(168*4, -592, 168*4, 0, myPaint);
+
         myPaint.setTextSize(15);
         canvas.drawText("12/09/2023 LNGH", 10, -580, myPaint); //TODO: Print Date and time of the bill
 
@@ -47,9 +52,19 @@ public class PDFMaker extends AppCompatActivity {
             else{
                 myPaint.setTextSize(10);
                 lineCounter+=15;
-                canvas.drawText(item.get("ColorOrSize") + " || " +
-                        item.get("Quantity") + item.get("Unit") + " -> " +
-                        item.get("PricePerUnit") + " = ", 10, lineCounter, myPaint);
+//                canvas.drawText(item.get("ColorOrSize") + "->" +
+//                        item.get("Quantity") + item.get("Unit") + " * " +
+//                        item.get("PricePerUnit") + "=" +
+//                        Double.parseDouble(item.get("Quantity")) * Double.parseDouble(item.get("PricePerUnit")), 10, lineCounter, myPaint);
+
+                String output = String.format("%-6s->%6s%2s * %-7s=%7s", item.get("ColorOrSize")
+                        ,item.get("Quantity")
+                        ,item.get("Unit")
+                        ,item.get("PricePerUnit")
+                        ,(int)Double.parseDouble(item.get("Quantity")) * (int)Double.parseDouble(item.get("PricePerUnit")) + "");
+                Log.d("Debug", "Print testing : "+output);
+
+                canvas.drawText(output, 10, lineCounter, myPaint);
             }
         }
 

@@ -60,8 +60,8 @@ public class BillEditor extends AppCompatActivity {
         billItem = new HashMap<>();
         billItem.put("Type", "ColorOrSize");
         billItem.put("Name", "Diamonds");
-        billItem.put("ColorOrSize", "16");
-        billItem.put("Quantity", "10");
+        billItem.put("ColorOrSize", "Hena");
+        billItem.put("Quantity", "10000");
         billItem.put("Unit", "Pc");
         billItem.put("PricePerUnit", "2.5");
         bill.add(billItem);
@@ -69,10 +69,10 @@ public class BillEditor extends AppCompatActivity {
         billItem = new HashMap<>();
         billItem.put("Type", "ColorOrSize");
         billItem.put("Name", "Diamonds");
-        billItem.put("ColorOrSize", "16");
+        billItem.put("ColorOrSize", "Blu");
         billItem.put("Quantity", "10");
         billItem.put("Unit", "Pc");
-        billItem.put("PricePerUnit", "2.5");
+        billItem.put("PricePerUnit", "10000");
         bill.add(billItem);
 
         billItem = new HashMap<>();
