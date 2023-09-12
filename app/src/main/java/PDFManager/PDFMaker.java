@@ -130,11 +130,11 @@ public class PDFMaker extends AppCompatActivity {
 //                        item.get("PricePerUnit") + "=" +
 //                        Double.parseDouble(item.get("Quantity")) * Double.parseDouble(item.get("PricePerUnit")), 10, lineCounter, myPaint);
 
-                String output = String.format("%-6s->%6s%2s * %-7s=%7s", item.get("ColorOrSize")
+                String output = String.format("%s->%s%s*%-1.2f=%1.2f", item.get("ColorOrSize")
                         ,item.get("Quantity")
                         ,item.get("Unit")
-                        ,item.get("PricePerUnit")
-                        ,(int)Double.parseDouble(item.get("Quantity")) * (int)Double.parseDouble(item.get("PricePerUnit")) + "");
+                        ,Double.parseDouble(item.get("PricePerUnit"))
+                        ,Double.parseDouble(item.get("Quantity")) * Double.parseDouble(item.get("PricePerUnit")));
                 Log.d("Debug", "Print testing : "+output);
 
                 canvasArrayList.get(pageCount).drawText(output, columnCounter, lineCounter, myPaint);
@@ -142,9 +142,10 @@ public class PDFMaker extends AppCompatActivity {
         }
 
         lineCounter+=25;
-        myPaint.setTextSize(15);
+        myPaint.setTextSize(10);
         myPaint.setFakeBoldText(true);
-        canvasArrayList.get(pageCount).drawText("TotalPrice : " + BillEditor.totalPrice, columnCounter, lineCounter, myPaint);
+        String output = String.format("TotalPrice : Rs. %10.2f", BillEditor.totalPrice);
+        canvasArrayList.get(pageCount).drawText(output, columnCounter, lineCounter, myPaint);
 
         canvasArrayList.get(pageCount).rotate(270);
         pdfDocument.finishPage(pagesArrayList.get(pageCount));

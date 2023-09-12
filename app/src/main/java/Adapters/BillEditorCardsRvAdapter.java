@@ -50,8 +50,10 @@ public class BillEditorCardsRvAdapter extends RecyclerView.Adapter<BillEditorCar
             holder.colorOrSizeDisplayMtv.setText(BillEditor.bill.get(position).get("ColorOrSize"));
             holder.quantityDisplayMtv.setText(BillEditor.bill.get(position).get("Quantity"));
             holder.unitDisplayMtv.setText(BillEditor.bill.get(position).get("Unit"));
-            holder.itemPerUnitPriceDisplayMtv.setText(BillEditor.bill.get(position).get("PricePerUnit"));
-            holder.itemTotalPriceDisplayMtv.setText((Double.parseDouble(BillEditor.bill.get(position).get("Quantity")) * Double.parseDouble(BillEditor.bill.get(position).get("PricePerUnit"))) + "");
+            String output = String.format("%10.2f", Double.parseDouble(BillEditor.bill.get(position).get("PricePerUnit")));
+            holder.itemPerUnitPriceDisplayMtv.setText(output);
+            output = String.format("%10.2f", (Double.parseDouble(BillEditor.bill.get(position).get("Quantity")) * Double.parseDouble(BillEditor.bill.get(position).get("PricePerUnit"))));
+            holder.itemTotalPriceDisplayMtv.setText(output);
 
             //TODO: NEW PART ADDED (in-check bit-unstable) (Keep checking all combinations till its stable)
             holder.deleteItemBtn.setOnClickListener(v -> {

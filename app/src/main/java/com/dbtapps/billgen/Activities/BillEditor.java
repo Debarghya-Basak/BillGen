@@ -358,7 +358,8 @@ public class BillEditor extends AppCompatActivity {
                 totalPrice += Double.parseDouble(item.get("Quantity")) * Double.parseDouble(item.get("PricePerUnit"));
         }
 
-        binding.totalPriceDisplayMtv.setText("Rs. " + totalPrice);
+        String output = String.format("Rs. %10.2f", totalPrice);
+        binding.totalPriceDisplayMtv.setText(output);
     }
 
     private void searchPriceList(String search, TextInputEditText pricePerUnitTiet){
