@@ -104,13 +104,16 @@
                 android:layout_height="wrap_content"
 
                 android:hint="Enter color or size"
+                app:counterMaxLength="4"
 
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/colorOrSizeActv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+
+                    android:maxLength="4"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
