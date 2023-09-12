@@ -52,7 +52,7 @@ public class BillEditor extends AppCompatActivity {
         //TODO:TEMPORARY DATA PLS REMOVE AFTER TESTING
         bill = new ArrayList<>();
 
-        for(int i=0;i<60;i++) {
+        for(int i=0;i<100;i++) {
             billItem = new HashMap<>();
             billItem.put("Type", "Item");
             billItem.put("Name", "Diamonds");
