@@ -30,6 +30,7 @@ import java.util.Map;
 import Adapters.BillEditorCardsRvAdapter;
 import DatabaseManager.FirebaseDatabaseConnections;
 import DatabaseManager.FirebaseDatabaseDataHandler;
+import PDFManager.PDFMaker;
 
 public class BillEditor extends AppCompatActivity {
 
@@ -64,6 +65,17 @@ public class BillEditor extends AppCompatActivity {
         binding.addBtn.setOnClickListener(v -> {
             showBottomSheetDialog();
         });
+
+        binding.generateBillBtn.setOnClickListener(v -> {
+            generateBill();
+        });
+
+    }
+
+    private void generateBill() {
+
+        PDFMaker maker = new PDFMaker();
+        maker.generate();
 
     }
 
