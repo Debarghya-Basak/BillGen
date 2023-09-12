@@ -1,12 +1,17 @@
 package PDFManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintManager;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import com.dbtapps.billgen.Activities.BillEditor;
@@ -15,6 +20,7 @@ import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
+import Adapters.PdfDocumentAdapter;
 
 import DatabaseManager.FirebaseDatabaseConnections;
 
@@ -163,11 +169,43 @@ public class PDFMaker extends AppCompatActivity {
 
         try{
             pdfDocument.writeTo(new FileOutputStream(file));
+
+            printToWifiPrinter(context);
         }catch (Exception e){
             Log.d("Debug", "PDFMaker : Failed to generate pdf. " + e.getLocalizedMessage());
         }
 
+    }
 
+    private void printToWifiPrinter(Context context){
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            StorageManager storageManager = (StorageManager) context.getSystemService(STORAGE_SERVICE);
+            StorageVolume storageVolume = storageManager.getStorageVolumes().get(0);
+
+            PrintManager printManager = (PrintManager) context.getSystemService(PRINT_SERVICE);
+
+            try{
+                PrintDocumentAdapter printDocumentAdapter = new PdfDocumentAdapter(context,storageVolume.getDirectory().getPath() + "/Download/Bill.pdf");
+                printManager.print("Bill", printDocumentAdapter, new PrintAttributes.Builder().build());
+            }
+            catch (Exception e){
+                Log.d("Debug", "PDFMaker : Failed to print pdf. " + e.getLocalizedMessage());
+            }
+
+        }
+        else{
+
+            PrintManager printManager = (PrintManager) context.getSystemService(PRINT_SERVICE);
+
+            try{
+                PrintDocumentAdapter printDocumentAdapter = new PdfDocumentAdapter(context,Environment.getExternalStorageDirectory() + "/Download/bill.pdf");
+                printManager.print("Bill", printDocumentAdapter, new PrintAttributes.Builder().build());
+            }
+            catch (Exception e){
+                Log.d("Debug", "PDFMaker : Failed to print pdf. " + e.getLocalizedMessage());
+            }
+        }
     }
 
 }
