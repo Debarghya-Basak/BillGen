@@ -1,32 +1,32 @@
 package PDFManager;
 
-import static android.content.Context.STORAGE_SERVICE;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
-import android.graphics.pdf.PdfRenderer;
 import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.dbtapps.billgen.Activities.BillEditor;
-
-import org.checkerframework.checker.units.qual.A;
-
 import java.io.File;
 import java.io.FileOutputStream;
-import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class PDFMaker extends AppCompatActivity {
 
     public void generate(Context context) {
+
+        int day = 0, month = 0, year = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            day = LocalDate.now().getDayOfMonth();
+            month = LocalDate.now().getMonthValue();
+            year = LocalDate.now().getYear();
+        }
+        Log.d("Debug", "Date and time : Day -> " + day);
 
         PdfDocument pdfDocument = new PdfDocument();
         Paint myPaint = new Paint();
@@ -52,7 +52,7 @@ public class PDFMaker extends AppCompatActivity {
         canvasArrayList.get(pageCount).drawLine(0, -30, 842, -30, myPaint);
 
         myPaint.setTextSize(15);
-        canvasArrayList.get(pageCount).drawText("12/09/2023 LNGH", columnCounter, lineCounter, myPaint); //TODO: Print Date and time of the bill
+        canvasArrayList.get(pageCount).drawText(day + "/" + month + "/" + year + " LNGH", columnCounter, lineCounter, myPaint); //TODO: Print Date and time of the bill
 
         for(Map<String,String> item : BillEditor.bill){
 
@@ -68,7 +68,6 @@ public class PDFMaker extends AppCompatActivity {
 
                     pageCount++;
 
-                    PdfDocument.PageInfo pageNext = new PdfDocument.PageInfo.Builder(595,842,1).create();
                     pagesArrayList.add(pdfDocument.startPage(page));
                     canvasArrayList.add(pagesArrayList.get(pageCount).getCanvas());
 
@@ -100,7 +99,6 @@ public class PDFMaker extends AppCompatActivity {
 
                     pageCount++;
 
-                    PdfDocument.PageInfo pageNext = new PdfDocument.PageInfo.Builder(595,842,1).create();
                     pagesArrayList.add(pdfDocument.startPage(page));
                     canvasArrayList.add(pagesArrayList.get(pageCount).getCanvas());
 
