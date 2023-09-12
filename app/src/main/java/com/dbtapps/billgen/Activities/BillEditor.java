@@ -49,8 +49,60 @@ public class BillEditor extends AppCompatActivity {
         binding = ActivityBillEditorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        initPage();
-        btnListeners();
+        //TODO:TEMPORARY DATA PLS REMOVE AFTER TESTING
+        bill = new ArrayList<>();
+
+        billItem = new HashMap<>();
+        billItem.put("Type", "Item");
+        billItem.put("Name", "Diamonds");
+        bill.add(billItem);
+
+        billItem = new HashMap<>();
+        billItem.put("Type", "ColorOrSize");
+        billItem.put("Name", "Diamonds");
+        billItem.put("ColorOrSize", "16");
+        billItem.put("Quantity", "10");
+        billItem.put("Unit", "Pc");
+        billItem.put("PricePerUnit", "2.5");
+        bill.add(billItem);
+
+        billItem = new HashMap<>();
+        billItem.put("Type", "ColorOrSize");
+        billItem.put("Name", "Diamonds");
+        billItem.put("ColorOrSize", "16");
+        billItem.put("Quantity", "10");
+        billItem.put("Unit", "Pc");
+        billItem.put("PricePerUnit", "2.5");
+        bill.add(billItem);
+
+        billItem = new HashMap<>();
+        billItem.put("Type", "Item");
+        billItem.put("Name", "Diamonds");
+        bill.add(billItem);
+
+        billItem = new HashMap<>();
+        billItem.put("Type", "ColorOrSize");
+        billItem.put("Name", "Diamonds");
+        billItem.put("ColorOrSize", "16");
+        billItem.put("Quantity", "10");
+        billItem.put("Unit", "Pc");
+        billItem.put("PricePerUnit", "2.5");
+        bill.add(billItem);
+
+        billItem = new HashMap<>();
+        billItem.put("Type", "ColorOrSize");
+        billItem.put("Name", "Diamonds");
+        billItem.put("ColorOrSize", "16");
+        billItem.put("Quantity", "10");
+        billItem.put("Unit", "Pc");
+        billItem.put("PricePerUnit", "2.5");
+        bill.add(billItem);
+
+        generateBill();
+        //TODO: REMOVE TEMPORARY DATA TILL THIS COMMENT
+
+        //initPage(); //TODO: REMOVE COMMENT
+        //btnListeners(); //TODO: REMOVE COMMENT
     }
 
     private void initPage(){
@@ -73,6 +125,8 @@ public class BillEditor extends AppCompatActivity {
     }
 
     private void generateBill() {
+
+        //TODO: ADD conditions for bill generation (HIGHLY MANDATORY)
 
         PDFMaker maker = new PDFMaker();
         maker.generate(this);
