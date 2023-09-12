@@ -48,7 +48,7 @@
 
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="100sp"
+                        android:layout_width="70sp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="start"
@@ -67,7 +67,7 @@
 
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="70sp"
+                            android:layout_width="100sp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="end"
@@ -124,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
 
@@ -136,12 +136,12 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/colorOrSizeDisplayMtv"
-                    android:layout_width="100sp"
+                    android:layout_width="70sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
 
-                    android:text="---"
+                    android:text="zzzz"
 
                     android:theme="@style/textView20" />
 
@@ -155,12 +155,12 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/quantityDisplayMtv"
-                        android:layout_width="70sp"
+                        android:layout_width="100sp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
 
-                        android:text="-----"
+                        android:text="999999.99"
 
                         android:theme="@style/textView20"/>
 
@@ -171,7 +171,7 @@
                         android:layout_weight="1"
                         android:gravity="end"
 
-                        android:text="--"
+                        android:text="Kg"
 
                         android:theme="@style/textView20"/>
 
@@ -184,7 +184,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
 
-                    android:text="-------"
+                    android:text="999999.99"
 
                     android:theme="@style/textView20"/>
 
@@ -195,7 +195,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
 
-                    android:text="-------"
+                    android:text="999999.99"
 
                     android:theme="@style/textView20"/>
 
