@@ -75,7 +75,7 @@ public class BillEditor extends AppCompatActivity {
     private void generateBill() {
 
         PDFMaker maker = new PDFMaker();
-        maker.generate();
+        maker.generate(this);
 
     }
 

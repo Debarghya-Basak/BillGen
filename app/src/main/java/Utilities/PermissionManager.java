@@ -25,6 +25,7 @@ public class PermissionManager extends AppCompatActivity {
 
         permissionModelList.add(new PermissionModel("READ EXTERNAL STORAGE", Manifest.permission.READ_EXTERNAL_STORAGE, Build.VERSION_CODES.N, Build.VERSION_CODES.TIRAMISU));
         permissionModelList.add(new PermissionModel("WRITE EXTERNAL STORAGE", Manifest.permission.WRITE_EXTERNAL_STORAGE, Build.VERSION_CODES.N, Build.VERSION_CODES.TIRAMISU));
+        permissionModelList.add(new PermissionModel("READ MEDIA IMAGES", Manifest.permission.READ_MEDIA_IMAGES, Build.VERSION_CODES.TIRAMISU));
     }
 
     public static void permissionManager(Activity activity){
