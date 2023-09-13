@@ -123,7 +123,7 @@ public class PDFMaker extends AppCompatActivity {
                 canvasArrayList.get(pageCount).drawText(item.get("Name"), columnCounter, lineCounter, myPaint);
             }
             else{
-                myPaint.setTextSize(8);
+                myPaint.setTextSize(9);
                 lineCounter+=15;
 //                canvas.get(pageCount).drawText(item.get("ColorOrSize") + "->" +
 //                        item.get("Quantity") + item.get("Unit") + " * " +
