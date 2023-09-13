@@ -48,7 +48,7 @@
 
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="70sp"
+                        android:layout_width="90sp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="start"
@@ -136,12 +136,12 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/colorOrSizeDisplayMtv"
-                    android:layout_width="70sp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
 
-                    android:text="wwww"
+                    android:text="wwwww"
 
                     android:theme="@style/textView20" />
 
